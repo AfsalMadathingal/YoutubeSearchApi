@@ -10,8 +10,16 @@ app.get("/ping", (req, res) => {
   res.status(200).json(true);
 });
 
+
 app.get("/", async (req, res) => {
-  const query = req.body.query(async () => {
+    res.send("use Post method to get result");
+})
+
+app.post("/search", async (req, res) => {
+    
+  const query = req.body.query
+  
+  (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
