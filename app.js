@@ -5,6 +5,8 @@ const cheerio = require("cheerio");
 require("dotenv").config();
 const puppeteer = require("puppeteer");
 const port = process.env.PORT || 3056;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/ping", (req, res) => {
   res.status(200).json(true);
