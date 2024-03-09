@@ -64,8 +64,9 @@ app.post("/search", async (req, res) => {
       video.thumbnail = thumbnailUrl;
     }
 
-    console.log(videoLinks);
-    res.send(videoLinks);
+    console.log(videoLinks[0]);
+    
+    res.status(200).json(videoLinks);
 
     await browser.close();
   })();
