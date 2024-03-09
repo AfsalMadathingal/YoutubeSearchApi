@@ -53,16 +53,16 @@ app.post("/search", async (req, res) => {
       return links;
     });
 
-    for (const video of videoLinks) {
-      await page.goto(video.link);
-      const thumbnailUrl = await page.evaluate(() => {
-        const thumbnailUrlTag = document.querySelector(
-          'link[itemprop="thumbnailUrl"][href*="maxresdefault.jpg"]'
-        );
-        return thumbnailUrlTag ? thumbnailUrlTag.href : "";
-      });
-      video.thumbnail = thumbnailUrl;
-    }
+    // for (const video of videoLinks) {
+    //   await page.goto(video.link);
+    //   const thumbnailUrl = await page.evaluate(() => {
+    //     const thumbnailUrlTag = document.querySelector(
+    //       'link[itemprop="thumbnailUrl"][href*="maxresdefault.jpg"]'
+    //     );
+    //     return thumbnailUrlTag ? thumbnailUrlTag.href : "";
+    //   });
+    //   video.thumbnail = thumbnailUrl;
+    // }
 
     console.log(videoLinks[0]);
 
