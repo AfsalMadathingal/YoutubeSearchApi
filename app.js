@@ -16,9 +16,11 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/search", async (req, res) => {
-    
+
   const query = req.body.query
   
+  console.log("query", query);
+
   (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
