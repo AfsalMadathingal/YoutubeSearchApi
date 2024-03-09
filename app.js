@@ -65,7 +65,7 @@ app.post("/search", async (req, res) => {
     }
 
     console.log(videoLinks[0]);
-    
+
     res.status(200).json(videoLinks);
 
     await browser.close();
