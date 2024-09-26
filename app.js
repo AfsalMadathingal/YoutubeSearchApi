@@ -13,16 +13,10 @@ app.get("/ping", (req, res) => {
 });
 
 
-app.get("/", async (req, res) => {
-    res.send("use Post method to get result");
-})
-
-app.post("/search", async (req, res) => {
+app.get("/search/:query", async (req, res) => {
 
 
-    console.log("req.body", req.body);
-  const query = req.body.query
-  console.log("query", query);
+  const query = req.params.query;
 
 
   (async () => {
@@ -53,16 +47,16 @@ app.post("/search", async (req, res) => {
       return links;
     });
 
-    // for (const video of videoLinks) {
-    //   await page.goto(video.link);
-    //   const thumbnailUrl = await page.evaluate(() => {
-    //     const thumbnailUrlTag = document.querySelector(
-    //       'link[itemprop="thumbnailUrl"][href*="maxresdefault.jpg"]'
-    //     );
-    //     return thumbnailUrlTag ? thumbnailUrlTag.href : "";
-    //   });
-    //   video.thumbnail = thumbnailUrl;
-    // }
+    for (const video of videoLinks) {
+      await page.goto(video.link);
+      const thumbnailUrl = await page.evaluate(() => {
+        const thumbnailUrlTag = document.querySelector(
+          'link[itemprop="thumbnailUrl"][href*="maxresdefault.jpg"]'
+        );
+        return thumbnailUrlTag ? thumbnailUrlTag.href : "";
+      });
+      video.thumbnail = thumbnailUrl;
+    }
 
     console.log(videoLinks[0]);
 
